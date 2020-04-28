@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_recipe.*
 import kotlinx.android.synthetic.main.activity_recipe.description
 import kotlinx.android.synthetic.main.activity_recipe_list.*
@@ -28,6 +30,7 @@ import java.io.IOException
 class RecipeActivity : AppCompatActivity(), AnkoLogger {
     var recipe = RecipeModel()
     lateinit var app: MainApp
+    lateinit var  ref : DatabaseReference
     val IMAGE_REQUEST = 1
     val LOCATION_REQUEST = 2
     var edit = false
@@ -39,6 +42,7 @@ class RecipeActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_recipe)
         app = application as MainApp
 
+        ref = FirebaseDatabase.getInstance().getReference("recipes")
 
 
 
@@ -58,6 +62,8 @@ class RecipeActivity : AppCompatActivity(), AnkoLogger {
                 chooseImage.setText(R.string.change_recipe_image)
             }
             btnAdd.setText(R.string.save_recipe)
+
+
         }
 
 
@@ -80,7 +86,17 @@ class RecipeActivity : AppCompatActivity(), AnkoLogger {
                 if (edit) {
                     app.recipes.update(recipe.copy())
                 } else {
+
                     app.recipes.create(recipe.copy())
+                      val recId = ref.push().key
+                    val recipe = recipe.copy()
+                    if (recId != null) {
+                        ref.child(recId).setValue(recipe).addOnCompleteListener{
+                            Toast.makeText(applicationContext, "Recipe Saved Successfully", Toast.LENGTH_LONG).show()
+                    }
+
+                    }
+
                 }
             }
             info("add Button Pressed: $recipeTitle")
@@ -89,6 +105,23 @@ class RecipeActivity : AppCompatActivity(), AnkoLogger {
 
 
         }
+
+//        ref.addValueEventListener(object: ValueEventListener {
+//            override fun onCancelled(p0: DatabaseError) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onDataChange(p0: DataSnapshot) {
+//                    if(p0!!.exists()){
+//                        for( i in p0.children){
+//                            val recipe = i.getValue(RecipeModel::class.java)
+//                            app.recipes.create(recipe!!)
+//                    }
+//
+//            }}
+//
+//        })  attempt to load from database
+
 
 
         chooseImage.setOnClickListener {
