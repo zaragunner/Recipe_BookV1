@@ -38,6 +38,7 @@ class RecipeMemStore: RecipeStore, AnkoLogger {
             foundRecipe.zoom = recipe.zoom
             foundRecipe.ingredients = recipe.ingredients
             foundRecipe.country  = recipe.country
+            foundRecipe.method = recipe.method
             logAll()
         }
     }

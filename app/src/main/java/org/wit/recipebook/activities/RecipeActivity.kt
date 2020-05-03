@@ -54,6 +54,7 @@ class RecipeActivity : AppCompatActivity(), AnkoLogger {
             description.setText(recipe.description)
             countryView.setText(recipe.country)
             recipeIngredients.setText(recipe.ingredients)
+            recipeMethod.setText(recipe.method)
 
             recipeIngredients.setText(recipe.ingredients)
 
@@ -80,6 +81,7 @@ class RecipeActivity : AppCompatActivity(), AnkoLogger {
             recipe.description = description.text.toString()
             recipe.ingredients=recipeIngredients.text.toString()
             recipe.country= countryView.text.toString()
+            recipe.method = recipeMethod.text.toString()
             if (recipe.title.isEmpty()) {
                 toast(R.string.enter_recipe_title)
             } else {

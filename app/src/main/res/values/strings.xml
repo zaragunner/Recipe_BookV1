@@ -16,5 +16,6 @@
     <string name="country">Country</string>
     <string name="hint_recipeIngredients">Ingredients</string>
     <string name="menu_deleteRecipe">Delete</string>
+    <string name="hint_recipeMethod">Method</string>
 
 </resources>

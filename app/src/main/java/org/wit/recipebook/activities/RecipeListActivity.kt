@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
+import com.mancj.materialsearchbar.MaterialSearchBar
 
 import kotlinx.android.synthetic.main.activity_recipe_list.*
 import org.jetbrains.anko.intentFor
@@ -25,6 +28,7 @@ class RecipeListActivity : AppCompatActivity(), RecipeListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
         app = application as MainApp
+//        val searchBar = findViewById(R.id.searchCat) as MaterialSearchBar
 
 
         val layoutManager = LinearLayoutManager(this)
@@ -35,8 +39,24 @@ class RecipeListActivity : AppCompatActivity(), RecipeListener {
 
         toolbarMain.title = title
         setSupportActionBar(toolbarMain)
-
-
+//val adapter = RecipeAdapter(app.recipes.findAll(), this)
+//
+//
+//        searchBar.addTextChangeListener(object : TextWatcher {
+//            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+//                //SEARCH FILTER
+//              RecipeAdapter.getFilter().filter(charSequence)
+//
+//            }
+//
+//            override fun afterTextChanged(editable: Editable) {
+//
+//            }
+//        })
 
     }
 

@@ -13,7 +13,8 @@ data class RecipeModel (var id: Long = 0,
                         var lng: Double = 0.0,
                         var zoom: Float = 0f,
                         var country: String = "",
-                        var ingredients: String= ""
+                        var ingredients: String= "",
+                        var method: String = ""
 
                             ): Parcelable
 @Parcelize

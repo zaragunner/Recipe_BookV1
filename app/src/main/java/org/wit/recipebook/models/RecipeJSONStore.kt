@@ -51,6 +51,7 @@ class RecipeJSONStore : RecipeStore, AnkoLogger {
                 foundRecipe.lng = recipe.lng
                 foundRecipe.zoom = recipe.zoom
                 foundRecipe.country=recipe.country
+                foundRecipe.method = recipe.method
             }
             serialize()
         }
